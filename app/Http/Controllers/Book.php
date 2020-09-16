@@ -29,6 +29,14 @@ class Book extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @queryParam name required Book title name. Example: Nanti Kita Cerita Tentang Hari Ini
+     * @queryParam serial_number Serial number qr code book. Example: 9CZ6XTDIMN7GE4WB
+     * @queryParam publisher_year required Book published. Example: 2020
+     * @queryParam price required Book price. Example: 10000
+     *
+     * @response {
+     *      "message": "The article was successfully added."
+     * }
      * @return \Illuminate\Http\Response
      */
     public function create(AddForm $request)
@@ -58,6 +66,8 @@ class Book extends Controller
 
     /**
      * Display the specified resource.
+     *
+     * @queryParam id Book id. Example: 3
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,6 +108,15 @@ class Book extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @queryParam id required Book id. Example: 3
+     * @queryParam name Book title name. Example: Nanti Kita Cerita Tentang Hari Ini
+     * @queryParam serial_number Serial number qr code book. Example: 9CZ6XTDIMN7GE4WB
+     * @queryParam publisher_year Book published. Example: 2020
+     * @queryParam price Book price. Example: 10000
+     *
+     * @response {
+     *      "message": "The article was successfully updated."
+     * }
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -120,6 +139,11 @@ class Book extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @queryParam id required Book id. Example: 3
+     *
+     * @response {
+     *      "message": "The book was successfully deleted."
+     * }
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

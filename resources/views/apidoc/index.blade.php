@@ -105,7 +105,7 @@ response.json()</code></pre>
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "ca0442e7-4ca1-4266-b842-bddcb2562037",
+        "_postman_id": "1fac661d-9303-41d5-b442-9f514b06bc7b",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
@@ -115,13 +115,48 @@ response.json()</code></pre>
             "description": "",
             "item": [
                 {
+                    "name": "doc.json",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "127.0.0.1:8000",
+                            "path": "doc.json",
+                            "query": []
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "response": []
+                    }
+                },
+                {
                     "name": "Display the specified resource.",
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "localhost",
+                            "host": "127.0.0.1:8000",
                             "path": "api\/book",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "Book id.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "GET",
                         "header": [
@@ -147,9 +182,34 @@ response.json()</code></pre>
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "localhost",
+                            "host": "127.0.0.1:8000",
                             "path": "api\/book",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "Nanti+Kita+Cerita+Tentang+Hari+Ini",
+                                    "description": "Book title name.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "serial_number",
+                                    "value": "9CZ6XTDIMN7GE4WB",
+                                    "description": "Serial number qr code book.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "publisher_year",
+                                    "value": "2020",
+                                    "description": "Book published.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "price",
+                                    "value": "10000",
+                                    "description": "Book price.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "POST",
                         "header": [
@@ -175,9 +235,40 @@ response.json()</code></pre>
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "localhost",
+                            "host": "127.0.0.1:8000",
                             "path": "api\/book",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "Book id.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "Nanti+Kita+Cerita+Tentang+Hari+Ini",
+                                    "description": "Book title name.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "serial_number",
+                                    "value": "9CZ6XTDIMN7GE4WB",
+                                    "description": "Serial number qr code book.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "publisher_year",
+                                    "value": "2020",
+                                    "description": "Book published.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "price",
+                                    "value": "10000",
+                                    "description": "Book price.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "PUT",
                         "header": [
@@ -203,9 +294,16 @@ response.json()</code></pre>
                     "request": {
                         "url": {
                             "protocol": "http",
-                            "host": "localhost",
+                            "host": "127.0.0.1:8000",
                             "path": "api\/book",
-                            "query": []
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "3",
+                                    "description": "Book id.",
+                                    "disabled": false
+                                }
+                            ]
                         },
                         "method": "DELETE",
                         "header": [
@@ -239,12 +337,18 @@ response.json()</code></pre>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X GET \
-    -G "http://127.0.0.1:8000/api/book" \
+    -G "http://127.0.0.1:8000/api/book?id=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/book"
 );
+
+let params = {
+    "id": "3",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -266,6 +370,9 @@ $response = $client-&gt;get(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'id'=&gt; '3',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -274,55 +381,45 @@ print_r(json_decode((string) $body));</code></pre>
 import json
 
 url = 'http://127.0.0.1:8000/api/book'
+params = {
+  'id': '3',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre>
 <blockquote>
-<p>Example response (200):</p>
+<p>Example response (422):</p>
 </blockquote>
-<pre><code class="language-json">[
-    {
-        "name": "Nanti Kita Cerita Tentang Hari Ini",
-        "serial_number": "60R9CWLVNHKY5UMZ",
-        "publisher_year": 2020,
-        "price": 100000
-    },
-    {
-        "name": "B-Leadership In War Hardcover",
-        "serial_number": "DVH4863K0G7UMS2C",
-        "publisher_year": 2020,
-        "price": 120000
-    },
-    {
-        "name": "Proverbs From Around The World",
-        "serial_number": "RDUC980WALJ3F6H5",
-        "publisher_year": 2020,
-        "price": 249000
-    },
-    {
-        "name": "Le Mariage: Lose or Love Her Again",
-        "serial_number": "8J653LXVBEYUWS12",
-        "publisher_year": 2020,
-        "price": 399000
-    },
-    {
-        "name": "5cm : Aku, Kamu, Samudera, dan Bintang Bintang",
-        "serial_number": "SJN9XKY8BOZL63U0",
-        "publisher_year": 2020,
-        "price": 149000
-    },
-    {
-        "name": "Stardom Syndrome",
-        "serial_number": "7GL9DZAY2XE86HN3",
-        "publisher_year": 2020,
-        "price": 80000
+<pre><code class="language-json">{
+    "message": "The given data was invalid.",
+    "errors": {
+        "id": [
+            "Book not found."
+        ]
     }
-]</code></pre>
+}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>GET api/book</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>optional</td>
+<td>Book id.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_87639d2c13c955291d7ef79a0c226410 -->
 <!-- START_d1ae1dbcf13d9384ee96ea1f12513f06 -->
 <h2>Show the form for creating a new resource.</h2>
@@ -330,12 +427,21 @@ response.json()</code></pre>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X POST \
-    "http://127.0.0.1:8000/api/book" \
+    "http://127.0.0.1:8000/api/book?name=Nanti+Kita+Cerita+Tentang+Hari+Ini&amp;serial_number=9CZ6XTDIMN7GE4WB&amp;publisher_year=2020&amp;price=10000" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/book"
 );
+
+let params = {
+    "name": "Nanti Kita Cerita Tentang Hari Ini",
+    "serial_number": "9CZ6XTDIMN7GE4WB",
+    "publisher_year": "2020",
+    "price": "10000",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -357,6 +463,12 @@ $response = $client-&gt;post(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'name'=&gt; 'Nanti Kita Cerita Tentang Hari Ini',
+            'serial_number'=&gt; '9CZ6XTDIMN7GE4WB',
+            'publisher_year'=&gt; '2020',
+            'price'=&gt; '10000',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -365,14 +477,58 @@ print_r(json_decode((string) $body));</code></pre>
 import json
 
 url = 'http://127.0.0.1:8000/api/book'
+params = {
+  'name': 'Nanti Kita Cerita Tentang Hari Ini',
+  'serial_number': '9CZ6XTDIMN7GE4WB',
+  'publisher_year': '2020',
+  'price': '10000',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
-response = requests.request('POST', url, headers=headers)
+response = requests.request('POST', url, headers=headers, params=params)
 response.json()</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The article was successfully added."
+}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>POST api/book</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>required</td>
+<td>Book title name.</td>
+</tr>
+<tr>
+<td><code>serial_number</code></td>
+<td>optional</td>
+<td>Serial number qr code book.</td>
+</tr>
+<tr>
+<td><code>publisher_year</code></td>
+<td>required</td>
+<td>Book published.</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>required</td>
+<td>Book price.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_d1ae1dbcf13d9384ee96ea1f12513f06 -->
 <!-- START_82de77bf2f938174b70e875ecb486591 -->
 <h2>Update the specified resource in storage.</h2>
@@ -380,12 +536,22 @@ response.json()</code></pre>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X PUT \
-    "http://127.0.0.1:8000/api/book" \
+    "http://127.0.0.1:8000/api/book?id=3&amp;name=Nanti+Kita+Cerita+Tentang+Hari+Ini&amp;serial_number=9CZ6XTDIMN7GE4WB&amp;publisher_year=2020&amp;price=10000" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/book"
 );
+
+let params = {
+    "id": "3",
+    "name": "Nanti Kita Cerita Tentang Hari Ini",
+    "serial_number": "9CZ6XTDIMN7GE4WB",
+    "publisher_year": "2020",
+    "price": "10000",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -407,6 +573,13 @@ $response = $client-&gt;put(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'id'=&gt; '3',
+            'name'=&gt; 'Nanti Kita Cerita Tentang Hari Ini',
+            'serial_number'=&gt; '9CZ6XTDIMN7GE4WB',
+            'publisher_year'=&gt; '2020',
+            'price'=&gt; '10000',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -415,14 +588,64 @@ print_r(json_decode((string) $body));</code></pre>
 import json
 
 url = 'http://127.0.0.1:8000/api/book'
+params = {
+  'id': '3',
+  'name': 'Nanti Kita Cerita Tentang Hari Ini',
+  'serial_number': '9CZ6XTDIMN7GE4WB',
+  'publisher_year': '2020',
+  'price': '10000',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
-response = requests.request('PUT', url, headers=headers)
+response = requests.request('PUT', url, headers=headers, params=params)
 response.json()</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The article was successfully updated."
+}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>PUT api/book</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>Book id.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>optional</td>
+<td>Book title name.</td>
+</tr>
+<tr>
+<td><code>serial_number</code></td>
+<td>optional</td>
+<td>Serial number qr code book.</td>
+</tr>
+<tr>
+<td><code>publisher_year</code></td>
+<td>optional</td>
+<td>Book published.</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>optional</td>
+<td>Book price.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_82de77bf2f938174b70e875ecb486591 -->
 <!-- START_0c7bb6fade47be92ccbdfe79144f2d7e -->
 <h2>Remove the specified resource from storage.</h2>
@@ -430,12 +653,18 @@ response.json()</code></pre>
 <p>Example request:</p>
 </blockquote>
 <pre><code class="language-bash">curl -X DELETE \
-    "http://127.0.0.1:8000/api/book" \
+    "http://127.0.0.1:8000/api/book?id=3" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"</code></pre>
 <pre><code class="language-javascript">const url = new URL(
     "http://127.0.0.1:8000/api/book"
 );
+
+let params = {
+    "id": "3",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 let headers = {
     "Content-Type": "application/json",
@@ -457,6 +686,9 @@ $response = $client-&gt;delete(
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
+        'query' =&gt; [
+            'id'=&gt; '3',
+        ],
     ]
 );
 $body = $response-&gt;getBody();
@@ -465,14 +697,40 @@ print_r(json_decode((string) $body));</code></pre>
 import json
 
 url = 'http://127.0.0.1:8000/api/book'
+params = {
+  'id': '3',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
-response = requests.request('DELETE', url, headers=headers)
+response = requests.request('DELETE', url, headers=headers, params=params)
 response.json()</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "The book was successfully deleted."
+}</code></pre>
 <h3>HTTP Request</h3>
 <p><code>DELETE api/book</code></p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>required</td>
+<td>Book id.</td>
+</tr>
+</tbody>
+</table>
 <!-- END_0c7bb6fade47be92ccbdfe79144f2d7e -->
       </div>
       <div class="dark-box">
