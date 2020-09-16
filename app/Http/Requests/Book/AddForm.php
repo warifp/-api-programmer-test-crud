@@ -24,7 +24,7 @@ class AddForm extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:3|max:25',
+            'name' => 'required|string|min:3|max:50',
             'serial_number' => 'nullable|string|min:16|max:16',
             'publisher_year' => 'required|integer',
             'price' => 'required|integer',
