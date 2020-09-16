@@ -105,7 +105,7 @@ response.json()</code></pre>
     "variables": [],
     "info": {
         "name": "Laravel API",
-        "_postman_id": "1fac661d-9303-41d5-b442-9f514b06bc7b",
+        "_postman_id": "fc26047d-ff76-4e05-9b89-b4551825101a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.0.0\/collection.json"
     },
