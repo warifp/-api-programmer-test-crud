@@ -84,6 +84,7 @@ class Book extends Controller
             return response($book);
         } else {
             $book = BookModel::select([
+                'id',
                 'name',
                 'serial_number',
                 'publisher_year',
