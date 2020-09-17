@@ -90,7 +90,9 @@ class Book extends Controller
                 'price',
             ])->get();
 
-            return response()->json($book);
+            $arr['data'] = $book;
+
+            return response()->json($arr);
         }
     }
 
